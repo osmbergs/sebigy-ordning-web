@@ -1,0 +1,69 @@
+
+
+
+$login-box-base-color : #F9F9FF;
+
+$login-box-text-base-color : #333333;
+
+#logo-image-small{
+
+  width: 150px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+#login-box{
+
+  margin-top:40px;
+  width: 400px;
+  min-height:350px;
+
+  border-radius:5px ;
+
+  background-color:$login-box-base-color;
+
+
+  border-style: solid;
+  border-width: 1px;
+  border-color: darken($login-box-base-color,10%);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  color: $login-box-text-base-color;
+
+}
+
+#login-box-header{
+
+  margin-left: -30px;
+  margin-right: -30px;
+  margin-top:-30px;
+  color: var(--skin-header-fg);
+  background-color: var(--skin-header-bg);
+  font-size: 1.25rem;
+  text-align: center;
+
+  padding-top: 9px;
+  height: 80px;
+}
+#login-box-content{
+
+  margin-top:30px;
+
+}
+
+#logo-image-large{
+  padding-top: 0px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin-top: -0px;
+  height: 70px;
+
+}
+
+#logo-image-corpia{
+
+  width: 100px;
+}

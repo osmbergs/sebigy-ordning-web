@@ -1,0 +1,16 @@
+
+.score-result-layout{
+  min-height: 250px;
+  min-width: 500px;
+  padding-top: 7px;
+  padding-left: 10px;
+  border-left: 2px solid transparent;
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(-45deg, transparent 50%,gray 150%);
+//  border-image: linear-gradient(0deg, gray 0%, transparent 100%);
+
+  border-image-slice: 1;
+
+  //box-shadow: 0 0 15px 10px #141414;
+  margin-bottom: 50px;
+}

@@ -1,0 +1,150 @@
+
+//Colors
+
+
+$header-base-color:#E3002C;
+
+$sidebar-base-color : #274A4F;
+
+$sidebar-text-base-color : #bbbbbb;
+
+$content-base-color:var(--white);
+
+
+
+
+
+
+.navbar.bg-dark {
+
+  background-color: var(--skin-header-bg) !important;
+  color: var(--skin-header-fg) !important;
+
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color:  var(--skin-header-fg)!important;
+
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+
+}
+
+#logo-image{
+
+  width: 150px;
+  margin-top: -3px;
+}
+
+#logo-image-bottom{
+
+  width: 150px;
+  text-align: center;
+  margin-top: -2px;
+  opacity: 0.7;
+}
+
+#sidebar {
+  min-width: 190px;
+  max-width: 190px;
+  min-height: 100vh;
+  border-right: 1px solid darken($sidebar-base-color , 10%);
+  border-left: 10px solid darken($sidebar-base-color , 5%);
+}
+
+
+#sidebar.active {
+  margin-left: -230px;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -250px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+}
+
+a, a:hover, a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+#sidebar {
+  /* don't forget to add all the previously mentioned styles here too */
+  background: $sidebar-base-color ;
+  color: $sidebar-text-base-color ;
+  transition: all 0.3s;
+
+
+
+
+
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: darken($sidebar-base-color , 10%)
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid darken($sidebar-base-color , 5%);
+}
+
+#sidebar ul p {
+  color: $sidebar-text-base-color;
+  padding: 250px;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
+#sidebar ul li a:hover {
+  color:lighten($sidebar-base-color , 20%);
+  background: $content-base-color;
+}
+.main{ 
+  align-self: flex-start;
+}
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+  color: lighten($sidebar-text-base-color , 40%);
+  background: darken($sidebar-base-color , 5%);
+}
+
+#content{
+  width: 100%;
+  padding-left: 5px;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+ 
+  background-color: var(--skin-content-bg)!important;
+
+
+}
+#footer {
+    width: 100%;
+  padding-left: 5px;
+  padding-top: 50px;
+}
+.jumbotron{
+
+  background-color: red!important;
+}
+.main-outlet{
+  float:left;
+  max-width: 600px;
+}
+#logo-image-corpia{
+
+  width: 120px;
+}

@@ -1,0 +1,62 @@
+
+
+
+
+<div class="container h-100">
+
+
+  <div  class="row h-100 justify-content-center align-items-center">
+
+    <div id="login-box">
+      <div id="login-box-header">
+        <img id="logo-image-large" src="./assets/logo_charm_transparent.png" >
+<!--        <span>{{environment.cms_app_title}}</span>-->
+
+        <div>
+
+          <ngx-spinner [fullScreen]="false" type="ball-atom" size="medium">
+            <p class="loading">Authenticating....</p>
+          </ngx-spinner>
+        </div>
+
+      </div>
+      <div id="login-box-content">
+
+
+
+       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off" placeholder="<Username>">
+          <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Username is required</div>
+        </div>
+
+        <div class="form-group">
+
+          <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="off" placeholder="<Password>">
+          <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Password is required</div>
+        </div>
+        <button class="btn btn-primary btn-block" [disabled]="loginForm.invalid ">Login</button>
+
+         <div *ngIf="invalidLogin" class="error">
+          <br>
+
+          <div class="alert alert-danger" role="alert">Wrong username or password.</div>
+
+
+        </div>
+      </form>
+
+
+      </div>
+
+      <br>
+      <hr>
+        <div class="small text-muted float-right" style="text-align: center">Powered by&nbsp;<img id="logo-image-small" src="assets/logo_charm_solutions_transparent.png" ></div>
+
+
+
+
+    </div>
+  </div>
+</div>
+

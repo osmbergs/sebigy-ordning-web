@@ -1,0 +1,117 @@
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+
+  <a class="navbar-brand" href="#" style="color: #212529">
+    <img id="logo-image" src="./assets/{{environment.skin_logo}}" />
+    {{ environment.cms_app_title }}</a
+  >
+
+
+
+
+
+
+  <ul class="navbar-nav ml-auto navbar">
+    <li class="nav-item text-nowrap">
+      <span class="nav-link"
+        >Signed in as: <b>{{ loggedInUser?.user_email }}</b>
+      </span>
+    </li>
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#" (click)="logout()">Sign out</a>
+    </li>
+
+  </ul>
+
+</nav>
+
+<!-- https://bootstrapious.com/p/bootstrap-sidebar-->
+
+<div class="wrapper">
+  <div id="sidebar">
+    <div class="sticky-top">
+      <br />
+      <br />
+
+      <ul class="list-unstyled components">
+        <li
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/"><i class="fa fa-home fa-fw"></i> Home</a>
+        </li>
+
+
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/lists" ><i class="fa fa-star fa-fw"></i> Lists</a>
+        </li>
+
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <a  routerLink="/memos"><i class="fa fa-table fa-fw"></i> Credit Memos</a>
+          </li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a  routerLink="/portfolio-outlooks"><i class="fa fa-folder fa-fw"></i> Portfolio Analysis</a>
+        </li>
+
+        <li
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <a routerLink="/help"><i class="fa fa-question fa-fw"></i>Help</a>
+        </li>
+
+        <hr />
+        <li
+          *ngIf="adminUser"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          <a routerLink="/settings"><i class="fa fa-cog fa-fw"></i> Settings</a>
+        </li>
+        <!--
+        <li routerLinkActive="active_" [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/disabled"><i class="fa fa-search fa-fw"></i>  Audit Log</a>
+
+        </li>
+        <li routerLinkActive="active_" [routerLinkActiveOptions]="{exact: true}">
+          <a routerLink="/disabled"><i class="fa fa-bar-chart fa-fw"></i>  Metrics</a>
+
+
+        </li>
+-->
+      </ul>
+
+      <br />
+    </div>
+  </div>
+
+  <div id="content">
+    <div class="main container no-gutters " style="min-height: 100vh;">
+
+        <router-outlet></router-outlet>
+    </div>
+    <div class="container no-gutters">
+      <hr>
+      <div class="row px-3" style="width: 100%;">
+
+        <div *ngIf="tenant" class="col small">
+          {{tenant.id}} - {{tenant.name}}
+        </div>
+
+        <div class="col">
+           <div class="small text-muted float-right" style="text-align: center;margin-right: -45px">Powered by&nbsp;<img id="logo-image-bottom" src="assets/logo_charm_solutions_transparent.png" ></div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
