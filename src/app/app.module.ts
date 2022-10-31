@@ -34,6 +34,11 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ToastrModule} from "ngx-toastr";
 
+import { ListComponent } from './lists/list/list.component';
+import {TaskListComponent} from "./lists/list/task-list/task-list.component";
+import {NoteListComponent} from "./lists/list/note-list/note-list.component";
+import {CheckListComponent} from "./lists/list/check-list/check-list.component";
+
 
 
 export function initApp(http: HttpClient) {
@@ -66,7 +71,11 @@ export function tokenGetter() {
     SettingsComponent,
     DashboardComponent,
     HelpComponent,
-    ContentBoxComponent
+    ContentBoxComponent,
+    TaskListComponent,
+    CheckListComponent,
+    ListComponent,
+    NoteListComponent
   ],
   imports: [
     FormsModule,

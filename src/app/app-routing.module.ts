@@ -9,6 +9,7 @@ import {LoginComponent} from "./auth/login/login.component";
 import {AppLayoutComponent} from "./_layout/app-layout/app-layout.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {HelpComponent} from "./help/help.component";
+import {ListComponent} from "./lists/list/list.component";
 
 
 
@@ -19,15 +20,10 @@ const routes: Routes = [
     component: AppLayoutComponent,
     children: [
       { path: '', component: DashboardComponent },
-/*
-      { path: 'scores', component: ScoresIndexComponent },
 
-      {
-        path: 'scores/:entityId/:id',
-        component: ScoresDetailsComponent,
+      { path: 'list/:listId', component: ListComponent },
+//      { path: 'list/:listId/item/:itemId', component: ItemComponent },
 
-      },
-  */
       {
         path: 'settings',
         component: SettingsComponent,
