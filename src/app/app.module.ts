@@ -41,6 +41,7 @@ import {CheckListComponent} from "./lists/list/check-list/check-list.component";
 
 import {ListIndexComponent} from "./lists/list-index/list-index.component";
 import { ListIndexItemComponent } from './lists/list-index-item/list-index-item.component';
+import { ListItemComponent } from './lists/list-item/list-item.component';
 
 
 
@@ -81,7 +82,8 @@ export function tokenGetter() {
     ListIndexComponent,
 
     NoteListComponent,
-     ListIndexItemComponent
+     ListIndexItemComponent,
+     ListItemComponent
   ],
   imports: [
     FormsModule,

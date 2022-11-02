@@ -1,4 +1,13 @@
-<p>list works!</p>
+<h3>Items for list {{list?.name}}</h3>
 
 
-<pre>{{list|json}}</pre>
+
+
+<div *ngFor="let i of items">
+
+  <list-item   [item]="i">  </list-item>
+
+</div>
+
+
+
