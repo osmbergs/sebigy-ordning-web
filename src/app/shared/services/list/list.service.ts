@@ -5,6 +5,7 @@ import { AuthService } from '../auth/auth.service';
 import {BehaviorSubject, map, Observable, Subject, Subscription} from "rxjs";
 import {ListModel} from "./list.model";
 import {ItemModel} from "./item.model";
+import {PaginatedListModel} from "./paginated.list.model";
 
 
 @Injectable({
@@ -60,6 +61,19 @@ export class ListService {
 
 
     return this.http.get<ListModel>(this.cfg.getEnvironment().apiURL + '/api/v1/item-lists/' + id + '/', httpOptions);
+  }
+
+    public loadLists() {
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          Accept: 'application/json',
+        }),
+      };
+
+
+      return this.http.get<PaginatedListModel>(this.cfg.getEnvironment().apiURL + '/api/v1/item-lists/', httpOptions);
+
 
     //    .subscribe(list => {
     //      var listSub=this._currentList

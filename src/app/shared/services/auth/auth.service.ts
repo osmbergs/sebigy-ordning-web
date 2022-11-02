@@ -56,7 +56,7 @@ public loggedInUser:any;
 
       })}
 
-    return this.http.post(this.cfg.getEnvironment().apiURL+'/public/auth/login', body.toString(), httpOptions)
+    return this.http.post(this.cfg.getEnvironment().apiURL+'/api/v1/public/auth/login', body.toString(), httpOptions)
     .pipe(catchError(err => {
       return throwError(err);
     }));

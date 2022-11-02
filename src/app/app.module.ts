@@ -39,6 +39,9 @@ import {TaskListComponent} from "./lists/list/task-list/task-list.component";
 import {NoteListComponent} from "./lists/list/note-list/note-list.component";
 import {CheckListComponent} from "./lists/list/check-list/check-list.component";
 
+import {ListIndexComponent} from "./lists/list-index/list-index.component";
+import { ListIndexItemComponent } from './lists/list-index-item/list-index-item.component';
+
 
 
 export function initApp(http: HttpClient) {
@@ -75,7 +78,10 @@ export function tokenGetter() {
     TaskListComponent,
     CheckListComponent,
     ListComponent,
-    NoteListComponent
+    ListIndexComponent,
+
+    NoteListComponent,
+     ListIndexItemComponent
   ],
   imports: [
     FormsModule,

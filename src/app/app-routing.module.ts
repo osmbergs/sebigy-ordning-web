@@ -1,6 +1,6 @@
 
 import { SettingsComponent } from './settings/settings.component';
-import { NgModule} from '@angular/core';
+import {Component, NgModule} from '@angular/core';
 
 import { RouterModule, Routes } from '@angular/router';
 
@@ -10,6 +10,8 @@ import {AppLayoutComponent} from "./_layout/app-layout/app-layout.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {HelpComponent} from "./help/help.component";
 import {ListComponent} from "./lists/list/list.component";
+
+import {ListIndexComponent} from "./lists/list-index/list-index.component";
 
 
 
@@ -21,12 +23,16 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
 
-      { path: 'list/:listId', component: ListComponent },
+      { path: 'lists/:listId', component: ListComponent },
 //      { path: 'list/:listId/item/:itemId', component: ItemComponent },
 
       {
         path: 'settings',
         component: SettingsComponent,
+      },
+      {
+        path: 'lists',
+        component: ListIndexComponent,
       },
       { path: 'help', component: HelpComponent },
     ],

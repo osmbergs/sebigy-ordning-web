@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ListModel} from "../../shared/services/list/list.model";
 import {ListService} from "../../shared/services/list/list.service";
+import {PaginatedListModel} from "../../shared/services/list/paginated.list.model";
 
 @Component({
-  selector: 'list',
-  templateUrl: 'list.component.html',
-  styleUrls: ['list.component.css']
+  selector: 'list-index',
+  templateUrl: './list-index.component.html',
+  styleUrls: ['./list-index.component.css']
 })
-export class ListComponent implements OnInit {
+export class ListIndexComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
@@ -18,7 +19,7 @@ export class ListComponent implements OnInit {
   ) { }
 
 
-  public list: ListModel | undefined
+  public lists: PaginatedListModel | undefined
 
   private sub: any;
 private id:any
@@ -29,8 +30,8 @@ private id:any
       this.id = +params['id']; // (+) converts string 'id' to a number
 
 
-      this.listService.loadList(this.id).subscribe(l=> {
-        this.list=l;
+      this.listService.loadLists().subscribe(ls=> {
+        this.lists=ls;
       })
 
     });
