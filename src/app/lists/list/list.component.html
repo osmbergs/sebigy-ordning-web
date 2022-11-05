@@ -11,7 +11,7 @@
 
 <div>
   <div>Add new items</div>
-  <div><input type="text" (keydown.enter)="addNew($event)"></div>
+  <div><input type="text" [(ngModel)]="newItemName" (keydown.enter)="addNew($event)"></div>
 
 
 

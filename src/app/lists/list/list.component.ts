@@ -57,10 +57,17 @@ private listId:any
   addNew(event: any) {
 
 
-    console.log("You entered: ", event.target.value);
+    console.log("You entered: ", this.newItemName);
 
+    if(this.list)
+      this.listService.addItem(this.list.id,this.newItemName,"").subscribe(ret=>{
+        this.listService.refreshCurrentItems(this.listId)
+        this.newItemName="";
 
-   // this.itemService.addItem(this.list?.id,event,"")
+      },err=>{
+
+        console.log("Failed adding new item",err)
+      })
 
   }
 
