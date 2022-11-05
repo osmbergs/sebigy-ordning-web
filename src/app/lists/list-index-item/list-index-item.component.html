@@ -1,8 +1,10 @@
-<div class="list-index-item"  (click)="onClick()">
 
 
-  <div><b>Id:</b>{{list?.id}}</div>
-  <div><b>Name:</b>{{list?.name}}</div>
-  <div><b>Type:</b>{{list?.type}}</div>
-  <hr>
-</div>
+
+
+<li
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+>
+  <a routerLink="/lists/{{list?.id}}"><i class="fa fa-list fa-fw"></i> {{list?.name}}e</a>
+</li>

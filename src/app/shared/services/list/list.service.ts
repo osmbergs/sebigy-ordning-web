@@ -8,6 +8,7 @@ import {ItemModel} from "./item.model";
 import {PaginatedListModel} from "./paginated.list.model";
 
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -15,39 +16,26 @@ export class ListService {
   constructor(
     private http: HttpClient,
     private cfg: ConfigService,
+
     private auth: AuthService
   )
   {
 
   }
 
+
+  private _lists:BehaviorSubject<any>=new BehaviorSubject<any>({})
+  public readonly lists:Observable<any> = this._lists.asObservable();
+
   private _currentList:BehaviorSubject<any>=new BehaviorSubject<any>({})
-  public readonly currenList:Observable<any> = this._currentList.asObservable();
+  public readonly currentList:Observable<any> = this._currentList.asObservable();
+
+
 
   private _currentItems:BehaviorSubject<ItemModel[]>=new BehaviorSubject<any>([])
-  public readonly currentItems:Observable<ItemModel[]> = this._currentList.asObservable();
+  public readonly currentItems:Observable<ItemModel[]> = this._currentItems.asObservable();
 
 
-
-//  private _scores: BehaviorSubject<any[]> = new BehaviorSubject([]);
-//  private _dashboardScores: BehaviorSubject<any[]> = new BehaviorSubject([]);
-//  private _priceCreateScores: BehaviorSubject<any[]> = new BehaviorSubject([]);
-//  private _errorInfo: BehaviorSubject<any[]> = new BehaviorSubject([]);
-
-//  private _lastGenerated: BehaviorSubject<ScoreModel> = new BehaviorSubject(
-//    null
-//  );
-
-//  public readonly scores$: Observable<any[]> = this._scores.asObservable();
-
-//  public readonly dashBoardScores: Observable<any[]> =
-//    this._dashboardScores.asObservable();
-//  public readonly priceCreateScores: Observable<any[]> =
-//    this._priceCreateScores.asObservable();
-
-//  public readonly errorInfo: Observable<any[]> = this._errorInfo.asObservable();
-
-//  private _hasCalc: boolean = false;
 
   //////////////////////////////////////////////////////
   public loadList(id: string) {
@@ -63,7 +51,32 @@ export class ListService {
     return this.http.get<ListModel>(this.cfg.getEnvironment().apiURL + '/api/v1/item-lists/' + id + '/', httpOptions);
   }
 
-    public loadLists() {
+
+
+
+
+
+  public setCurrentList(listId:string){
+    console.log("ListService:setCurrentList",listId)
+    for(var i=0;i<this._lists.value.length;i++)
+    {
+
+      if(this._lists.value[i].id==listId) {
+        console.log("wtf")
+        this._currentList.next(this._lists.value[i])
+        this.refreshCurrentItems(this._lists.value[i].id);
+        break;
+      }
+
+
+    }
+
+
+  }
+
+
+
+    public refreshLists() {
 
       const httpOptions = {
         headers: new HttpHeaders({
@@ -72,19 +85,106 @@ export class ListService {
       };
 
 
-      return this.http.get<PaginatedListModel>(this.cfg.getEnvironment().apiURL + '/api/v1/item-lists/', httpOptions);
+      return this.http.get<PaginatedListModel>(this.cfg.getEnvironment().apiURL + '/api/v1/item-lists/', httpOptions).subscribe( ret=>{
+        console.log("ListService:refreshLists",ret)
+        this._lists.next(ret.items);
+        this.setCurrentList(ret.items[0].id);
 
 
-    //    .subscribe(list => {
-    //      var listSub=this._currentList
-    //    listSub.next(list);
-    // }
-    // )
-    // }
+      },error => {
+
+
+        console.error("Failed loading lists...")
+
+      });
+
+
+
 
 
   }
+
+
+
+
+
+
+
+
+
+  //////////////////////////////////////////////////////
+  public refreshCurrentItems(listId:string) {
+    console.log("ListService:refreshCurrentItems, start")
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Accept: 'application/json',
+      }),
+    };
+
+    this.http.get<ItemModel[]>(this.cfg.getEnvironment().apiURL + '/api/v1/item-lists/'+listId+'/items'  , httpOptions).subscribe(
+      ret=>{
+        console.log("ListService:refreshCurrentItems",ret)
+        this._currentItems.next(ret);
+      },
+      error => {
+
+        console.error("Failed loading items",error)
+      }
+
+    );
+
+
+
+
   }
+
+
+  //////////////////////////////////////////////////////
+  public addItem(listId: string, name:string, description:string) {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Accept: 'application/json',
+      }),
+    };
+
+    const body={
+      name:name,
+      description:description,
+      initial_list_id:listId
+
+    }
+
+    return this.http.post<ItemModel>(this.cfg.getEnvironment().apiURL + '/api/v1/list-items/'  , body,httpOptions);
+  }
+
+
+  //////////////////////////////////////////////////////
+  public deleteItem(id: string): any {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http.delete<ItemModel[]>(
+      this.cfg.getEnvironment().apiURL + '/api/v1/list-items/' + id,
+      httpOptions
+    );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 

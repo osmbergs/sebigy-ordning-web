@@ -19,22 +19,19 @@ export class ListIndexComponent implements OnInit {
   ) { }
 
 
-  public lists: PaginatedListModel | undefined
+  public lists: ListModel[] | undefined
 
   private sub: any;
 private id:any
 
   ngOnInit(): void {
 
-    this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
 
+  this.listService.refreshLists();
+  this.listService.lists.subscribe(lists=>{
+    this.lists=lists
+  })
 
-      this.listService.loadLists().subscribe(ls=> {
-        this.lists=ls;
-      })
-
-    });
 
   }
 

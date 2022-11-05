@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ListModel} from "../../shared/services/list/list.model";
 import {ListService} from "../../shared/services/list/list.service";
-import {ItemService} from "../../shared/services/list/item.service";
+
 import {PaginatedItemsModel} from "../../shared/services/list/paginated.items.model";
 import {ItemModel} from "../../shared/services/list/item.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'list',
@@ -17,32 +18,49 @@ export class ListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private listService:ListService,
-    private itemService:ItemService
 
-  ) { }
+  ) {
+
+  }
 
 
-  public list: ListModel | undefined
-  public items: ItemModel[] | undefined
+  public list: ListModel|undefined;
+  public items: ItemModel[]|undefined;
   private sub: any;
-private id:any
+
+  public newItemName:string=""
+
+private listId:any
 
   ngOnInit(): void {
 
-    this.sub = this.route.params.subscribe(params => {
-      this.id = params['list_id'];
+    this.sub = this.route.params.subscribe((params) => {
 
-      console.log("Loading list ",params['list_id'])
-
-      this.itemService.loadItemsForlist(this.id).subscribe(i=> {
-        this.items=i;
-        this.listService.loadList(this.id).subscribe(l=>{
-          this.list=l;
-
-        })
-      })
-
+      this.listId= params['list-id'];
+      this.listService.setCurrentList(this.listId)
     });
+
+    this.listService.currentList.subscribe(list =>{
+        this.list=list;
+        this.listService.currentItems.subscribe(items=>{
+          this.items=items;
+        })
+
+    }
+
+    )
+
+
+
+  }
+
+  addNew(event: any) {
+
+
+    console.log("You entered: ", event.target.value);
+
+
+   // this.itemService.addItem(this.list?.id,event,"")
 
   }
 

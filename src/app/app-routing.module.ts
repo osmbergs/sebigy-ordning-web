@@ -23,7 +23,7 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
 
-      { path: 'lists/:list_id', component: ListComponent },
+      { path: 'lists/:list-id', component: ListComponent },
 //      { path: 'list/:listId/item/:itemId', component: ItemComponent },
 
       {

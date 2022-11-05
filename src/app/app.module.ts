@@ -23,8 +23,7 @@ import { LoginComponent } from './auth/login/login.component';
 
 import { HelpComponent } from './help/help.component';
 import { ContentBoxComponent } from './_layout/content-box/content-box.component';
-import { HeaderRowComponent } from './_layout/header-row/header-row.component';
-import { IndexHeaderComponent } from './_layout/index-header/index-header.component';
+
 import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -61,7 +60,7 @@ export function initApp(http: HttpClient) {
 
 
 export function tokenGetter() {
-  console.log("Tokengetter:",sessionStorage.getItem('token'))
+
   return sessionStorage.getItem('token');
 }
 

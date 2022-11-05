@@ -43,6 +43,21 @@
         </li>
 
 
+        <div *ngFor="let l of lists">
+
+
+          <li
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a routerLink="/lists/{{l?.id}}"><i class="fa fa-list fa-fw"></i> {{l?.name}}e</a>
+          </li>
+
+        </div>
+
+
+
+
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <a routerLink="/lists" ><i class="fa fa-star fa-fw"></i> Lists</a>
         </li>
