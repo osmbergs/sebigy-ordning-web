@@ -57,6 +57,7 @@ export class AppLayoutComponent implements OnInit {
       this.lists=lists
     })
 
+    this.listService.connect()
 
 
   }

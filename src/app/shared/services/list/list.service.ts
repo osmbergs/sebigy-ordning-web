@@ -173,7 +173,15 @@ export class ListService {
   }
 
 
+  public connect(): void {
+    let source = new EventSource(this.cfg.getEnvironment().apiURL + '/api/v1/events/?tok='+this.auth.getToken());
+    source.addEventListener('message', message => {
 
+      console.log("Got message",message);
+
+
+    });
+  }
 
 
 
