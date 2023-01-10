@@ -27,8 +27,9 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService,private spinner: NgxSpinnerService, private usersService:UserService,private config:ConfigService) {
 
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.required]
+      username: [''],
+      password: [''],
+      testuser: ['']
     });
 
 
@@ -48,8 +49,25 @@ export class LoginComponent implements OnInit {
     }
 
 
+
+    if(this.loginForm.controls['testuser'].value)
+    {
+      const parts=this.loginForm.controls['testuser'].value.split(';')
+      loginPayload.username=parts[0]
+      loginPayload.password=parts[1]
+      console.log("Using select to log in..",loginPayload)
+
+    }
+
+
+
+
+
+
+
+
     // @ts-ignore
-    this.authService.login(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value).subscribe(
+    this.authService.login(loginPayload.username,loginPayload.password).subscribe(
       data => {
         console.log("Got auth data",data)
         this.spinner.hide();

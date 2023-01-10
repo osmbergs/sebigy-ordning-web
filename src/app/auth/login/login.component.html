@@ -33,6 +33,18 @@
           <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="off" placeholder="<Password>">
           <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Password is required</div>
         </div>
+
+
+        <select class="form-select" formControlName="testuser">
+          <option value="user1@test.com;test">user1@test.com</option>
+          <option value="user2@test.com;test">user2@test.com</option>
+          <option value="user3@test.com;test">user3@test.com</option>
+          <option value="admin_1@test.com;test">admin_1@test.com</option>
+
+
+        </select>
+
+
         <button class="btn btn-primary btn-block" [disabled]="loginForm.invalid ">Login</button>
 
          <div *ngIf="invalidLogin" class="error">

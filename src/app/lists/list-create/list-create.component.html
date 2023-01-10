@@ -1,0 +1,81 @@
+
+<button class="btn btn-success" (click)="openModal(template)">Create new list</button>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Create new list</h4>
+    <!--
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    -->
+  </div>
+  <div class="modal-body">
+    <div>
+      <ngx-spinner
+        [fullScreen]="false"
+        type="ball-atom"
+        size="large"
+        bdColor="rgba(200,200,200,0.8)"
+        color="#888"
+      >
+        <h4 class="loading">Processing request...</h4>
+      </ngx-spinner>
+    </div>
+
+    <form [formGroup]="createParamsForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" formControlName="name" id="name" autocomplete="off"/>
+        <div class="error" *ngIf=" createParamsForm.controls['name'].hasError('required') && createParamsForm.controls['name'].touched ">
+          Name required
+        </div>
+        <small class="form-text text-muted">Enter the name of the new list </small>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Descriptiopm:</label>
+        <input type="text" class="form-control" formControlName="description" id="description" autocomplete="off"/>
+        <div class="error" *ngIf=" createParamsForm.controls['description'].hasError('required') && createParamsForm.controls['description'].touched ">
+          Description required
+        </div>
+        <small class="form-text text-muted">Enter the descriptomn of the new list </small>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Type:</label>
+        <input type="text" class="form-control" formControlName="type" id="type" autocomplete="off"/>
+        <div class="error" *ngIf=" createParamsForm.controls['type'].hasError('required') && createParamsForm.controls['type'].touched ">
+          Type required
+        </div>
+        <small class="form-text text-muted">Enter the type of the new list </small>
+      </div>
+
+
+      <br />
+      <br />
+      <div *ngIf="errorMessage" class="error">
+        <div class="alert alert-danger" role="alert">
+          <b>Could not calculate a score</b>. {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer pull-right">
+    <button
+      class="btn btn-secondary"
+      (click)="modalRef.hide()"
+      [disabled]="isCreating"
+    >
+      Cancel
+    </button>
+
+    <button
+      class="btn btn-success"
+      (click)="onSubmit()"
+      [disabled]="createParamsForm.invalid || isCreating"
+    >
+      Generate score
+    </button>
+  </div>
+</ng-template>

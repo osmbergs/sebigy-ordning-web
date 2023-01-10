@@ -1,0 +1,21 @@
+<h3>Items for list {{list?.name}}</h3>
+
+
+
+
+<div *ngFor="let i of items">
+
+  <list-item   [item]="i">  </list-item>
+
+</div>
+
+<div>
+  <div>Add new items</div>
+  <div><input type="text" [(ngModel)]="newItemName" (keydown.enter)="addNew($event)"></div>
+
+
+
+</div>
+
+
+

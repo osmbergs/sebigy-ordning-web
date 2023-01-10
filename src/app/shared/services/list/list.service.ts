@@ -6,6 +6,7 @@ import {BehaviorSubject, map, Observable, Subject, Subscription} from "rxjs";
 import {ListModel} from "./list.model";
 import {ItemModel} from "./item.model";
 import {PaginatedListModel} from "./paginated.list.model";
+import {PaginatedItemsModel} from "./paginated.items.model";
 
 
 
@@ -52,7 +53,24 @@ export class ListService {
   }
 
 
+  //////////////////////////////////////////////////////
+  public addList(name:string, description:string,type:string) {
 
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Accept: 'application/json',
+      }),
+    };
+
+    const body={
+      name:name,
+      description:description,
+      type:type
+
+    }
+
+    return this.http.post<ListModel>(this.cfg.getEnvironment().apiURL + '/api/v1/item-lists/'  , body,httpOptions);
+  }
 
 
 
@@ -121,10 +139,10 @@ export class ListService {
       }),
     };
 
-    this.http.get<ItemModel[]>(this.cfg.getEnvironment().apiURL + '/api/v1/item-lists/'+listId+'/items'  , httpOptions).subscribe(
+    this.http.get<PaginatedItemsModel>(this.cfg.getEnvironment().apiURL + '/api/v1/item-lists/'+listId+'/items'  , httpOptions).subscribe(
       ret=>{
         console.log("ListService:refreshCurrentItems",ret)
-        this._currentItems.next(ret);
+        this._currentItems.next(ret.items);
       },
       error => {
 
@@ -151,7 +169,7 @@ export class ListService {
     const body={
       name:name,
       description:description,
-      initial_list_id:listId
+      list_id:listId
 
     }
 
@@ -175,7 +193,7 @@ export class ListService {
 
   public connect(): void {
     let source = new EventSource(this.cfg.getEnvironment().apiURL + '/api/v1/events/?tok='+this.auth.getToken());
-    source.addEventListener('message', message => {
+    source.addEventListener('userid', message => {
 
       console.log("Got message",message);
 

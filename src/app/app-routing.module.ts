@@ -12,6 +12,8 @@ import {HelpComponent} from "./help/help.component";
 import {ListComponent} from "./lists/list/list.component";
 
 import {ListIndexComponent} from "./lists/list-index/list-index.component";
+import {TodayComponent} from "./today/today.component";
+import {ThisWeekComponent} from "./this-week/this-week.component";
 
 
 
@@ -31,9 +33,14 @@ const routes: Routes = [
         component: SettingsComponent,
       },
       {
-        path: 'lists',
-        component: ListIndexComponent,
+        path: 'today',
+        component: TodayComponent,
       },
+      {
+        path: 'this-week',
+        component: ThisWeekComponent,
+      },
+
       { path: 'help', component: HelpComponent },
     ],
   },

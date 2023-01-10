@@ -41,6 +41,9 @@ import {CheckListComponent} from "./lists/list/check-list/check-list.component";
 import {ListIndexComponent} from "./lists/list-index/list-index.component";
 import { ListIndexItemComponent } from './lists/list-index-item/list-index-item.component';
 import { ListItemComponent } from './lists/list-item/list-item.component';
+import { TodayComponent } from './today/today.component';
+import { ThisWeekComponent } from './this-week/this-week.component';
+import { ListCreateComponent } from './lists/list-create/list-create.component';
 
 
 
@@ -82,7 +85,10 @@ export function tokenGetter() {
 
     NoteListComponent,
      ListIndexItemComponent,
-     ListItemComponent
+     ListItemComponent,
+     TodayComponent,
+     ThisWeekComponent,
+     ListCreateComponent
   ],
   imports: [
     FormsModule,

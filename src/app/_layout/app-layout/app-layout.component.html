@@ -42,6 +42,27 @@
           <a routerLink="/"><i class="fa fa-home fa-fw"></i> Home</a>
         </li>
 
+        <li
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/"><i class="fa fa-home fa-fw"></i> Inbox</a>
+        </li>
+
+        <li
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/today"><i class="fa fa-exclamation-circle fa-fw"></i> Today</a>
+        </li>
+        <li
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a routerLink="/this-week"><i class="fa fa-calendar fa-fw"></i> This week</a>
+        </li>
+
+        <hr>
 
         <div *ngFor="let l of lists">
 
@@ -50,19 +71,20 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a routerLink="/lists/{{l?.id}}"><i class="fa fa-list fa-fw"></i> {{l?.name}}e</a>
+            <a routerLink="/lists/{{l?.id}}"><i class="fa fa-list fa-fw"></i> {{l?.name}} ({{l?.item_count}})</a>
           </li>
 
         </div>
+        <list-create></list-create>
 
 
-
-
+      <hr>
+<!--
         <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <a routerLink="/lists" ><i class="fa fa-star fa-fw"></i> Lists</a>
+          <a routerLink="/lists" ><i class="fa fa-star fa-fw"></i> List index (remove)</a>
         </li>
 
-
+-->
 
         <li
           routerLinkActive="active"
@@ -71,7 +93,7 @@
           <a routerLink="/help"><i class="fa fa-question fa-fw"></i>Help</a>
         </li>
 
-        <hr />
+
         <li
           *ngIf="adminUser"
           routerLinkActive="active"
