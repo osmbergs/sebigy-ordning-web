@@ -44,6 +44,7 @@ import { ListItemComponent } from './lists/list-item/list-item.component';
 import { TodayComponent } from './today/today.component';
 import { ThisWeekComponent } from './this-week/this-week.component';
 import { ListCreateComponent } from './lists/list-create/list-create.component';
+import {ListSummaryComponent} from "./lists/list-summary/list-summary.component";
 
 
 
@@ -81,6 +82,7 @@ export function tokenGetter() {
     TaskListComponent,
     CheckListComponent,
     ListComponent,
+    ListSummaryComponent,
     ListIndexComponent,
 
     NoteListComponent,

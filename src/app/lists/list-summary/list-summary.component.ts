@@ -26,7 +26,7 @@ export class ListSummaryComponent implements OnInit {
   @Input() list: ListModel | undefined;
 
 
-  public items: ItemModel[]|undefined;
+
   private sub: any;
 
   public newItemName:string=""
@@ -35,41 +35,14 @@ export class ListSummaryComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.sub = this.route.params.subscribe((params) => {
 
-      this.listId= params['list-id'];
-      this.listService.setCurrentList(this.listId)
-    });
 
-    this.listService.currentList.subscribe(list =>{
-        this.list=list;
-        this.listService.currentItems.subscribe(items=>{
-          this.items=items;
-        })
 
-    }
-
-    )
 
 
 
   }
 
-  addNew(event: any) {
 
-
-    console.log("You entered: ", this.newItemName);
-
-    if(this.list)
-      this.listService.addItem(this.list.id,this.newItemName,"").subscribe(ret=>{
-        this.listService.refreshCurrentItems(this.listId)
-        this.newItemName="";
-
-      },err=>{
-
-        console.log("Failed adding new item",err)
-      })
-
-  }
 
 }

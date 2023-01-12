@@ -1,18 +1,11 @@
-<h3>Items for list {{list?.name}}</h3>
 
-
-
-
-<div *ngFor="let i of items">
-
-  <list-item   [item]="i">  </list-item>
-
-</div>
-
-<div>
-  <div>Add new items</div>
-  <div><input type="text" [(ngModel)]="newItemName" (keydown.enter)="addNew($event)"></div>
-
+<div class="list-summary">
+  <h3>{{list?.name}}</h3>
+  <h4>{{list?.item_count}} items</h4>
+  <h4>Top items</h4>
+  <div *ngFor="let i of list?.top_list_items">
+    <h5>{{i.name}}</h5>
+  </div>
 
 
 </div>

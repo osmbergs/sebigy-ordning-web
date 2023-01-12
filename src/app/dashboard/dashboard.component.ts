@@ -5,6 +5,8 @@ import {Observable} from "rxjs/index";
 import {ConfigService} from "../shared/services/config/config.service";
 import {animate, style, transition, trigger} from '@angular/animations';
 import {Router} from '@angular/router';
+import {ListService} from "../shared/services/list/list.service";
+import {ListModel} from "../shared/services/list/list.model";
 
 @Component({
   selector: 'app-dashboard',
@@ -27,15 +29,18 @@ export class DashboardComponent implements OnInit {
 
 
   public environment:any;
+  public lists: ListModel[] | undefined
 
-  constructor(private config:ConfigService, public router:Router) {
 
+  constructor(private config:ConfigService, public router:Router, public listService:ListService) {
 
     this.environment=this.config.getEnvironment();
 
   }
   ngOnInit(): void {
-
+    this.listService.lists.subscribe(lists=>{
+      this.lists=lists
+    })
 
   }
 
